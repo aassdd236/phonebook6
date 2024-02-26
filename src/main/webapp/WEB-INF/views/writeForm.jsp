@@ -37,7 +37,7 @@
 
 	<br>
 	<br>
-	<a href="/phonebook5/phone?action=list">리스트페이지로 이동</a>
+	<a href="/phonebook5/phone/list">리스트페이지로 이동</a>
 
 </body>
 </html>
