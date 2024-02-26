@@ -27,7 +27,7 @@ public class PhonebookController {
 	//등록
 	//http://localhost:8080/phonebook5/phone/write?name=이예슬&hp=010&company=02
 	@RequestMapping(value="/phone/write", method= {RequestMethod.GET, RequestMethod.POST })
-	public void write(@RequestParam(value="name") String name,
+	public String write(@RequestParam(value="name") String name,
 					  @RequestParam(value="hp") String hp,
 					  @RequestParam(value="company") String company) {
 		System.out.println("PhonebookController.write()");
@@ -44,8 +44,8 @@ public class PhonebookController {
 		
 		//dao.personInt(vo) 저장
 		 phonebookDao.personInsert(personVo);
-		
-		
+	
+		 return "redirect:/phone/list";
 	}
 	
 	@RequestMapping(value="/phone/write2", method= {RequestMethod.GET, RequestMethod.POST })
