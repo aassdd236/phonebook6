@@ -3,46 +3,84 @@
 
 <mapper namespace="phonebook">
 
+	<resultMap type="com.javaex.vo.PersonVo" id="resultMapPersonVo">
+		<result column="person_id" property="personId"></result>
+		<result column="name" property="name"></result>
+		<result column="hp" property="hp"></result>
+		<result column="company" property="company"></result>
+
+	</resultMap>
+
 	<!-- 삭제 -->
 	<delete id="delete" parameterType="int">
-		delete from person
-		where person_id=#{no}
-
+		<![CDATA[
+			delete from person
+			where person_id=#{no}
+		]]>
 	</delete>
-	<!-- 수정 -->
-	<update id="update" parameterType="com.javaex.vo.PersonVo">
-		update person
-		set name=#{name},
-		hp=#{hp},
-		company=#{company}
-		where person_id=#{personId}
 
+	<!-- 수정 -->
+	<update id="update" parameterType="PersonVo">
+		<![CDATA[	
+			update person
+			set name=#{name},
+			hp=#{hp},
+			company=#{company}
+			where person_id=#{personId}
+		]]>
 	</update>
 
 	<!-- 1명 데이터 가져오기 -->
-	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
-		select person_id personId,
-		name,
-		hp,
-		company
-		from person
-		where person_id=#{no}
+	<select id="selectOne" parameterType="int" resultMap="resultMapPersonVo">
+		<![CDATA[	
+			select person_id,
+			name,
+			hp,
+			company
+			from person
+			where person_id=#{no}
+		]]>
+	</select>
+	
+	<!-- 1명 데이터 가져오기 2 -->
+	<select id="selectOne2" parameterType="int" resultType="map">
+		<![CDATA[	
+			select person_id personId,
+			name,
+			hp,
+			company
+			from person
+			where person_id=#{no}
+		]]>
 	</select>
 
 	<!-- 전체 리스트 가져오기 -->
 	<select id="select" resultType="com.javaex.vo.PersonVo">
-		select person_id personId,
-		name,
-		hp,
-		company
-		from person	
+		<![CDATA[	
+			select person_id personId,
+			name,
+			hp,
+			company
+			from person
+		]]>
 	</select>
 
 	<!-- 쿼리문 작성 insert -->
-	<insert id="insert" parameterType="com.javaex.vo.PersonVo">
-		insert into person
-		values(null, #{name}, #{hp}, #{company})
+	<insert id="insert" parameterType="PersonVo">
+		<![CDATA[	
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+		]]>
 	</insert>
+	
+	<!-- insert 사용 map -->
+	<insert id="insert2" parameterType="PersonVo">
+		<![CDATA[	
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+		]]>
+	</insert>
+	
 
 
 
