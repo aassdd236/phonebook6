@@ -8,7 +8,6 @@
 		<result column="name" property="name"></result>
 		<result column="hp" property="hp"></result>
 		<result column="company" property="company"></result>
-
 	</resultMap>
 
 	<!-- 삭제 -->
